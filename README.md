@@ -1,5 +1,5 @@
-
-
+[![Build Status](https://travis-ci.org/sunxfancy/conan-llvm.svg?branch=v3.8)](https://travis-ci.org/sunxfancy/conan-llvm)
+[![Build status](https://ci.appveyor.com/api/projects/status/jtwfr4ymwc6173qq/branch/v3.8?svg=true)](https://ci.appveyor.com/project/sunxfancy/conan-llvm/branch/v3.8)
 
 ## conan-llvm
 [Conan.io](https://conan.io) package for LLVM.
