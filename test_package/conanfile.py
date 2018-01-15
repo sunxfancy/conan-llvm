@@ -2,8 +2,8 @@ from conans import ConanFile, CMake
 import os
 
 ############### CONFIGURE THESE VALUES ##################
-default_user = "lucteo"
-default_channel = "testing"
+default_user = "sunxfancy"
+default_channel = "ci"
 #########################################################
 
 channel = os.getenv("CONAN_CHANNEL", default_channel)
@@ -15,15 +15,16 @@ class TestLlvmConan(ConanFile):
     generators = "cmake"
 
     def build(self):
-        cmake = CMake(self.settings)
+        cmake = CMake(self)
         self.output.info("Running CMake")
-        self.run('cmake "%s" %s' % (self.conanfile_directory, cmake.command_line))
+        cmake.configure()
         self.output.info("Building the llvm test project")
-        self.run("cmake --build . %s" % cmake.build_config)
+        cmake.build()
 
     def imports(self):
         self.copy(pattern="*.dll", dst="bin", src="bin")
         self.copy(pattern="*.dylib", dst="bin", src="lib")
+        self.copy(pattern="*.so", dst="bin", src="lib")
         self.copy(pattern="*", dst="bin", src="bin")
         
     def test(self):
