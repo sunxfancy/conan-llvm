@@ -4,7 +4,7 @@ import os, platform
 
 class LlvmConan(ConanFile):
     name = 'llvm'
-    version = '3.5.2'
+    version = '3.8.1'
     url = 'https://github.com/sunxfancy/conan-llvm.git'
     license = 'BSD'
     settings = 'os', 'compiler', 'build_type', 'arch'
@@ -12,8 +12,8 @@ class LlvmConan(ConanFile):
     options = {'shared': [True, False]}
     default_options = 'shared=True'
 
-    archiveName = 'llvm-3.5.2.src.tar.xz'
-    folderName = 'llvm-3.5.2.src'
+    archiveName = 'llvm-3.8.1.src.tar.xz'
+    folderName = 'llvm-3.8.1.src'
 
     def extractFromUrl(self, url):
         self.output.info('download {}'.format(url))
