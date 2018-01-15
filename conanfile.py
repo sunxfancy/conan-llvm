@@ -1,5 +1,5 @@
 from conans import ConanFile, CMake
-from conans.tools import download, unzip, untargz
+from conans.tools import download, unzip
 import os, platform
 
 class LlvmConan(ConanFile):
@@ -19,7 +19,7 @@ class LlvmConan(ConanFile):
         self.output.info('download {}'.format(url))
         filename = os.path.basename(url)
         download(url, filename)
-        self.run('tar xf %s' % filename)
+        unzip(filename)
         os.unlink(filename)
         
     def source(self):
