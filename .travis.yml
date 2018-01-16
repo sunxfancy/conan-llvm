@@ -43,7 +43,7 @@ matrix:
         env: CONAN_APPLE_CLANG_VERSIONS=9.0
         
 before_install:
-  - python -c \"import fcntl; fcntl.fcntl(1, fcntl.F_SETFL, 0)\"
+  - python -c "import fcntl; fcntl.fcntl(1, fcntl.F_SETFL, 0)"
 
 install:
   - chmod +x .travis/install.sh
