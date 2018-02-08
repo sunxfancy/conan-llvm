@@ -1,5 +1,5 @@
 from conans import ConanFile, CMake
-from conans.tools import download, unzip, untargz
+from conans.tools import download, unzip
 import os, platform
 
 class LlvmConan(ConanFile):
@@ -12,18 +12,17 @@ class LlvmConan(ConanFile):
     options = {'shared': [True, False]}
     default_options = 'shared=True'
 
-    archiveName = 'llvm-3.8.1.src.tar.xz'
-    folderName = 'llvm-3.8.1.src'
+    folderName = 'llvm-release_38'
 
     def extractFromUrl(self, url):
         self.output.info('download {}'.format(url))
         filename = os.path.basename(url)
         download(url, filename)
-        untargz(filename)
+        unzip(filename)
         os.unlink(filename)
         
     def source(self):
-        url = 'http://llvm.org/releases/'+self.version+'/'+self.archiveName
+        url = 'https://github.com/llvm-mirror/llvm/archive/release_38.zip'
         self.extractFromUrl(url)
 
     def build(self):
