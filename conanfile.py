@@ -12,8 +12,7 @@ class LlvmConan(ConanFile):
     options = {'shared': [True, False]}
     default_options = 'shared=True'
 
-    archiveName = 'llvm-3.8.1.src.tar.xz'
-    folderName = 'llvm-3.8.1.src'
+    folderName = 'llvm-release_38'
 
     def extractFromUrl(self, url):
         self.output.info('download {}'.format(url))
@@ -23,7 +22,7 @@ class LlvmConan(ConanFile):
         os.unlink(filename)
         
     def source(self):
-        url = 'http://llvm.org/releases/'+self.version+'/'+self.archiveName
+        url = 'https://github.com/llvm-mirror/llvm/archive/release_38.zip'
         self.extractFromUrl(url)
 
     def build(self):
