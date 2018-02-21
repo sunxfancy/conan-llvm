@@ -1,11 +1,11 @@
 env:
    global:
-     - CONAN_REFERENCE: "llvm/3.8.1"
+     - CONAN_REFERENCE: "llvm/5.0.1"
      - CONAN_USERNAME: "sunxfancy"
      - CONAN_LOGIN_USERNAME: "sunxfancy"
      - CONAN_CHANNEL: "ci"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/elite-lang/ECDK"
-     - CONAN_STABLE_BRANCH_PATTERN: "v3.8"
+     - CONAN_STABLE_BRANCH_PATTERN: "v5.0"
 
 linux: &linux
    os: linux

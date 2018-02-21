@@ -1,0 +1,6 @@
+PROJECT(conanllvm)
+cmake_minimum_required(VERSION 3.0)
+include(conanbuildinfo.cmake)
+CONAN_BASIC_SETUP()
+include_directories(${CMAKE_SOURCE_DIR}/llvm-release_50)
+add_subdirectory("./llvm-release_50")

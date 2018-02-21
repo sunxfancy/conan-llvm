@@ -4,15 +4,18 @@ import os, platform
 
 class LlvmConan(ConanFile):
     name = 'llvm'
-    version = '3.8.1'
+    version = '5.0.1'
     url = 'https://github.com/sunxfancy/conan-llvm.git'
     license = 'BSD'
     settings = 'os', 'compiler', 'build_type', 'arch'
     exports = '*'
     options = {'shared': [True, False]}
-    default_options = 'shared=True'
+    default_options = 'shared=True', "gtest:shared=False"
 
-    folderName = 'llvm-release_38'
+    folderName = 'llvm-release_50'
+    requires = 'gtest/1.8.0@lasote/stable'
+    build_policy = "missing"
+    generators = "cmake"
 
     def extractFromUrl(self, url):
         self.output.info('download {}'.format(url))
@@ -22,12 +25,11 @@ class LlvmConan(ConanFile):
         os.unlink(filename)
         
     def source(self):
-        url = 'https://github.com/llvm-mirror/llvm/archive/release_38.zip'
+        url = 'https://github.com/llvm-mirror/llvm/archive/release_50.zip'
         self.extractFromUrl(url)
 
     def build(self):
         cmake = CMake(self)
-        srcDir = os.path.join(self.source_folder, self.folderName)
         installDir = os.path.join(self.source_folder, 'install')
         sharedLibs = 'ON' if self.options.shared else 'OFF'
         self.output.info('Configuring CMake...')
@@ -45,7 +47,7 @@ class LlvmConan(ConanFile):
                         '-DLLVM_BUILD_TESTS=OFF',
                         '-DLLVM_TARGETS_TO_BUILD=X86',
                         '-DBUILD_SHARED_LIBS={}'.format(sharedLibs)],
-                        build_folder='./build', source_folder=srcDir)
+                        build_folder='./build', source_folder=self.source_folder)
 
         self.output.info('Building...')
         cmake.build()
