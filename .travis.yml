@@ -1,11 +1,12 @@
 env:
    global:
-     - CONAN_REFERENCE: "llvm/5.0.1"
+     - CONAN_REFERENCE: "llvm/5.0.2"
      - CONAN_USERNAME: "sunxfancy"
      - CONAN_LOGIN_USERNAME: "sunxfancy"
      - CONAN_CHANNEL: "ci"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/elite-lang/ECDK"
-     - CONAN_STABLE_BRANCH_PATTERN: "v5.0"
+     - CONAN_STABLE_BRANCH_PATTERN: "release/*"
+     - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
 
 linux: &linux
    os: linux
@@ -46,7 +47,7 @@ matrix:
         env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=lasote/conanclang40 CONAN_CURRENT_PAGE=2 CONAN_TOTAL_PAGES=2
       - <<: *osx
         osx_image: xcode7.3
-        env: CONAN_APPLE_CLANG_VERSIONS=7.3
+        env: CONAN_APPLE_CLANG_VERSIONS=7.3 
       - <<: *osx
         osx_image: xcode8.3
         env: CONAN_APPLE_CLANG_VERSIONS=8.1

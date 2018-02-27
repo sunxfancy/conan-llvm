@@ -9,9 +9,22 @@ class LlvmConan(ConanFile):
     license = 'BSD'
     settings = 'os', 'compiler', 'build_type', 'arch'
     exports = '*'
-    options = {'shared': [True, False]}
-    default_options = 'shared=True', "gtest:shared=False"
-
+    options = {
+        'shared': [True, False],
+        'enable_rtti': [True, False],
+        'build_tools': [True, False],
+        'enable_pic': [True, False],
+        'enable_threads': [True, False]
+    }
+    default_options = (
+        'shared=True', 
+        'enable_rtti=True',
+        'build_tools=True',
+        'enable_pic=True',
+        'enable_threads=True',
+        'gtest:shared=False'
+    )
+        
     folderName = 'llvm-release_50'
     requires = 'gtest/1.8.0@lasote/stable'
     build_policy = "missing"
@@ -30,24 +43,26 @@ class LlvmConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        installDir = os.path.join(self.source_folder, 'install')
-        sharedLibs = 'ON' if self.options.shared else 'OFF'
         self.output.info('Configuring CMake...')
         if not os.path.exists('build'):
             os.mkdir('build')
-        cmake.configure(['-Wno-dev',
-                        '-DCMAKE_INSTALL_PREFIX={}'.format(installDir),
-                        '-DLIBCXX_INCLUDE_TESTS=OFF',
-                        '-DLIBCXX_INCLUDE_DOCS=OFF',
-                        '-DLLVM_INCLUDE_TOOLS=ON',
-                        '-DLLVM_INCLUDE_TESTS=OFF',
-                        '-DLLVM_INCLUDE_EXAMPLES=OFF',
-                        '-DLLVM_INCLUDE_GO_TESTS=OFF',
-                        '-DLLVM_BUILD_TOOLS=ON',
-			            '-DLLVM_ENABLE_RTTI=ON',
-                        '-DLLVM_BUILD_TESTS=OFF',
-                        '-DLLVM_TARGETS_TO_BUILD=X86',
-                        '-DBUILD_SHARED_LIBS={}'.format(sharedLibs)],
+
+        options = {
+            'LIBCXX_INCLUDE_TESTS': False,
+            'LIBCXX_INCLUDE_DOCS': False,
+            'LLVM_INCLUDE_TOOLS': self.options.build_tools,
+            'LLVM_INCLUDE_TESTS': False,
+            'LLVM_INCLUDE_EXAMPLES': False,
+            'LLVM_INCLUDE_GO_TESTS': False,
+            'LLVM_BUILD_TOOLS': self.options.build_tools,
+            'LLVM_ENABLE_PIC': self.options.enable_pic,
+            'LLVM_ENABLE_RTTI': self.options.enable_rtti,
+            'LLVM_ENABLE_THREADS': self.options.enable_threads,
+            'LLVM_BUILD_TESTS': False,
+            'LLVM_TARGETS_TO_BUILD': 'X86',
+            'BUILD_SHARED_LIBS': self.options.shared
+        }
+        cmake.configure(['-Wno-dev'], defs=options,
                         build_folder='./build', source_folder=self.source_folder)
 
         self.output.info('Building...')
@@ -58,5 +73,3 @@ class LlvmConan(ConanFile):
     def conan_info(self):
         self.info.settings.build_type = 'Release'
 
-    def package(self):
-        self.copy('*', dst='', src='install')
