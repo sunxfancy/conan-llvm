@@ -4,7 +4,7 @@ import os, platform
 
 class LlvmConan(ConanFile):
     name = 'llvm'
-    version = '5.0.1'
+    version = '5.0.2'
     url = 'https://github.com/sunxfancy/conan-llvm.git'
     license = 'BSD'
     settings = 'os', 'compiler', 'build_type', 'arch'
@@ -44,7 +44,7 @@ class LlvmConan(ConanFile):
                         '-DLLVM_INCLUDE_EXAMPLES=OFF',
                         '-DLLVM_INCLUDE_GO_TESTS=OFF',
                         '-DLLVM_BUILD_TOOLS=ON',
-			'-DLLVM_ENABLE_RTTI=ON',
+			            '-DLLVM_ENABLE_RTTI=ON',
                         '-DLLVM_BUILD_TESTS=OFF',
                         '-DLLVM_TARGETS_TO_BUILD=X86',
                         '-DBUILD_SHARED_LIBS={}'.format(sharedLibs)],
