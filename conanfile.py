@@ -44,6 +44,7 @@ class LlvmConan(ConanFile):
                         '-DLLVM_INCLUDE_EXAMPLES=OFF',
                         '-DLLVM_INCLUDE_GO_TESTS=OFF',
                         '-DLLVM_BUILD_TOOLS=ON',
+			'-DLLVM_ENABLE_RTTI=ON',
                         '-DLLVM_BUILD_TESTS=OFF',
                         '-DLLVM_TARGETS_TO_BUILD=X86',
                         '-DBUILD_SHARED_LIBS={}'.format(sharedLibs)],
