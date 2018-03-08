@@ -26,7 +26,7 @@ class LlvmConan(ConanFile):
     )
         
     folderName = 'llvm-release_50'
-    requires = 'gtest/1.8.0@lasote/stable'
+    requires = 'gtest/1.8.0@sunxfancy/stable'
     build_policy = "missing"
     generators = "cmake"
 

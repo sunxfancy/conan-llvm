@@ -61,6 +61,7 @@ before_install:
 install:
   - chmod +x .travis/install.sh
   - ./.travis/install.sh
+  - conan remote add sunxfancy https://api.bintray.com/conan/sunxfancy/common 
 
 script:
   - chmod +x .travis/run.sh
