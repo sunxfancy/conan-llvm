@@ -62,6 +62,7 @@ install:
   - chmod +x .travis/install.sh
   - ./.travis/install.sh
   - conan remote add sunxfancy https://api.bintray.com/conan/sunxfancy/common 
+  - conan user -p ${CONAN_PASSWORD} -r sunxfancy sunxfancy
 
 script:
   - chmod +x .travis/run.sh
