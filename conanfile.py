@@ -4,7 +4,7 @@ import os, platform
 
 class LlvmConan(ConanFile):
     name = 'llvm'
-    version = '5.0.2'
+    version = '4.0.1'
     url = 'https://github.com/sunxfancy/conan-llvm.git'
     license = 'BSD'
     settings = 'os', 'compiler', 'build_type', 'arch'
@@ -25,7 +25,7 @@ class LlvmConan(ConanFile):
         'gtest:shared=False'
     )
         
-    folderName = 'llvm-release_50'
+    folderName = 'llvm-release_40'
     requires = 'gtest/1.8.0@sunxfancy/stable'
     build_policy = "missing"
     generators = "cmake"
@@ -38,7 +38,7 @@ class LlvmConan(ConanFile):
         os.unlink(filename)
         
     def source(self):
-        url = 'https://github.com/llvm-mirror/llvm/archive/release_50.zip'
+        url = 'https://github.com/llvm-mirror/llvm/archive/release_40.zip'
         self.extractFromUrl(url)
 
     def build(self):
