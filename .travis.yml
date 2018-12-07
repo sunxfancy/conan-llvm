@@ -1,6 +1,6 @@
 env:
    global:
-     - CONAN_REFERENCE: "llvm/4.0.1"
+     - CONAN_REFERENCE: "llvm/7.0.0"
      - CONAN_USERNAME: "sunxfancy"
      - CONAN_LOGIN_USERNAME: "sunxfancy"
      - CONAN_CHANNEL: "ci"
@@ -12,7 +12,7 @@ linux: &linux
    os: linux
    sudo: required
    language: python
-   python: "3.6"
+   python: "3.5.2"
    services:
      - docker
 osx: &osx

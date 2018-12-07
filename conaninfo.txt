@@ -1,0 +1,46 @@
+[settings]
+    arch=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.libcxx=libstdc++
+    compiler.version=5
+    os=Linux
+
+[requires]
+    gtest/1.Y.Z
+
+[options]
+    build_tools=True
+    enable_pic=True
+    enable_rtti=True
+    enable_threads=True
+    shared=False
+
+[full_settings]
+    arch=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.libcxx=libstdc++
+    compiler.version=5
+    os=Linux
+
+[full_requires]
+    gtest/1.8.0@sunxfancy/stable:90ee443cae5dd5c1b4861766ac14dc6fae231a92
+
+[full_options]
+    build_tools=True
+    enable_pic=True
+    enable_rtti=True
+    enable_threads=True
+    shared=False
+    gtest:cygwin_msvc=False
+    gtest:fpic=False
+    gtest:no_gmock=False
+    gtest:no_main=False
+    gtest:shared=False
+
+[recipe_hash]
+
+
+[env]
+

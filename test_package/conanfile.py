@@ -11,7 +11,7 @@ username = os.getenv("CONAN_USERNAME", default_user)
 
 class TestLlvmConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "llvm/4.0.1@%s/%s" % (username, channel)
+    requires = "llvm/7.0.0@%s/%s" % (username, channel)
     generators = "cmake"
 
     def build(self):
