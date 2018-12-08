@@ -21,13 +21,10 @@ class LlvmConan(ConanFile):
         'enable_rtti=True',
         'build_tools=True',
         'enable_pic=True',
-        'enable_threads=True',
-        'gtest:shared=False'
+        'enable_threads=True'
     )
         
     folderName = 'llvm-release_70'
-    requires = 'gtest/1.8.0@sunxfancy/stable'
-    build_policy = "missing"
     generators = "cmake"
 
     def extractFromUrl(self, url):
@@ -48,11 +45,11 @@ class LlvmConan(ConanFile):
             os.mkdir('build')
 
         options = {
-            'LLVM_INCLUDE_TOOLS': self.options.build_tools,
+            'LLVM_INCLUDE_TOOLS': self.optrions.build_tools,
             'LLVM_BUILD_TOOLS': self.options.build_tools,
             'LLVM_ENABLE_PIC': self.options.enable_pic,
             'LLVM_ENABLE_RTTI': self.options.enable_rtti,
-            'LLVM_ENABLE_THREADS': self.options.enable_threads,
+            'LLVM_ENABLE_THREADS': self.options.enable_theads,
             'BUILD_SHARED_LIBS': self.options.shared
         }
         cmake.configure(['-Wno-dev'], defs=options,
