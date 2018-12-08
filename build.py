@@ -8,7 +8,8 @@ if __name__ == "__main__":
     #                         ("4.9", "x86", "sjlj", "posix"),
     #                         ("4.9", "x86", "dwarf2", "posix")]
     # builder = ConanMultiPackager(username='sunxfancy', mingw_configurations=mingw_configurations)
-    builder = ConanMultiPackager(username='sunxfancy')
+    builder = ConanMultiPackager(username='sunxfancy',
+                                remotes="https://api.bintray.com/conan/sunxfancy/common")
 
     builder.add_common_builds()
 

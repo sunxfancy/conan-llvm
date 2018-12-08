@@ -48,18 +48,11 @@ class LlvmConan(ConanFile):
             os.mkdir('build')
 
         options = {
-            'LIBCXX_INCLUDE_TESTS': False,
-            'LIBCXX_INCLUDE_DOCS': False,
             'LLVM_INCLUDE_TOOLS': self.options.build_tools,
-            'LLVM_INCLUDE_TESTS': False,
-            'LLVM_INCLUDE_EXAMPLES': False,
-            'LLVM_INCLUDE_GO_TESTS': False,
             'LLVM_BUILD_TOOLS': self.options.build_tools,
             'LLVM_ENABLE_PIC': self.options.enable_pic,
             'LLVM_ENABLE_RTTI': self.options.enable_rtti,
             'LLVM_ENABLE_THREADS': self.options.enable_threads,
-            'LLVM_BUILD_TESTS': False,
-            'LLVM_TARGETS_TO_BUILD': 'X86',
             'BUILD_SHARED_LIBS': self.options.shared
         }
         cmake.configure(['-Wno-dev'], defs=options,
