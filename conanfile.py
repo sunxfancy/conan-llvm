@@ -45,11 +45,11 @@ class LlvmConan(ConanFile):
             os.mkdir('build')
 
         options = {
-            'LLVM_INCLUDE_TOOLS': self.optrions.build_tools,
+            'LLVM_INCLUDE_TOOLS': self.options.build_tools,
             'LLVM_BUILD_TOOLS': self.options.build_tools,
             'LLVM_ENABLE_PIC': self.options.enable_pic,
             'LLVM_ENABLE_RTTI': self.options.enable_rtti,
-            'LLVM_ENABLE_THREADS': self.options.enable_theads,
+            'LLVM_ENABLE_THREADS': self.options.enable_threads,
             'BUILD_SHARED_LIBS': self.options.shared
         }
         cmake.configure(['-Wno-dev'], defs=options,
